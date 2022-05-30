@@ -2,6 +2,7 @@ import { IProduct } from '../../servis';
 
 export interface IProductsState {
 	products: IProduct[];
+	product: IProduct | null;
 	loading: boolean;
 	error: null | string;
 }
@@ -11,6 +12,7 @@ export enum ProductsActionTypes {
 	LOAD_PRODUCTS_SUCCESS = 'LOAD_PRODUCTS_SUCCESS',
 	LOAD_PRODUCTS_ERROR = 'LOAD_PRODUCTS_ERROR',
 	LOAD_PRODUCT = 'LOAD_PRODUCT',
+	CHANGE_ATTRIBUTES = 'CHANGE_ATTRIBUTES ',
 }
 
 interface ILoadProductsAction {
@@ -31,8 +33,15 @@ interface ILoadErrorProductAction {
 	prodId: number;
 }
 
+interface IChangeAttributes {
+	type: ProductsActionTypes.CHANGE_ATTRIBUTES;
+	Id: number;
+	user: string;
+}
+
 export type ProductsAction =
 	| ILoadProductsAction
 	| ILoadSuccessProductsAction
 	| ILoadErrorProductsAction
-	| ILoadErrorProductAction;
+	| ILoadErrorProductAction
+	| IChangeAttributes;

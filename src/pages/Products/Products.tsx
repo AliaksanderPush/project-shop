@@ -1,21 +1,30 @@
-import React, { useEffect } from 'react';
-import { useActions } from '../../redux/customHooks/useAction';
+import React from 'react';
 import { useTypedSelector } from '../../redux/customHooks/useTypedSelector';
-import { fetchProducts } from '../../redux/acshions/acshions';
+import { Spinner } from 'react-bootstrap';
 import { ProductsItems } from '../../components';
+import styles from './Product.module.css';
 
 export const Products = () => {
 	const { products, error, loading } = useTypedSelector((state) => state.products);
-	const { fetchProducts } = useActions();
 
-	useEffect(() => {
-		fetchProducts();
-	}, []);
+	console.log('products>>', products);
 
 	return (
-		<div>
-			<h1 style={{ textAlign: 'center', margin: '20px' }}>Products</h1>
-			<ProductsItems info={products} />
-		</div>
+		<>
+			{loading ? (
+				<div className={styles.spinner}>
+					<Spinner animation='border' variant='primary' />
+				</div>
+			) : null}
+			<div className={styles.content}>
+				{error ? (
+					<div className={styles.spinner}>
+						<div style={{ color: 'red', fontSize: '50px' }}>Error</div>{' '}
+					</div>
+				) : null}
+				<h1 style={{ textAlign: 'center', margin: '20px' }}>Products</h1>
+				<ProductsItems info={products} />
+			</div>
+		</>
 	);
 };

@@ -8,10 +8,11 @@ export const addRole = (role: string) => {
 	};
 };
 
-export const addToCart = (data: ICartProduct) => {
+export const addToCart = (data: ICartProduct, role: string) => {
 	return {
 		type: CartActionTypes.ADD_TO_CART_PRODUCT,
 		info: data,
+		roles: role,
 	};
 };
 
@@ -25,5 +26,12 @@ export const decrementProd = (ProdId: number) => {
 	return {
 		type: CartActionTypes.DECREMENT_PRODUCT,
 		id: ProdId,
+	};
+};
+
+export const showRoleCart = (role: string) => {
+	return {
+		type: CartActionTypes.SHOW_ROLE_CART,
+		userRole: role,
 	};
 };

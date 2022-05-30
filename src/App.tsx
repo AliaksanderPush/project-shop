@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Products } from './pages';
 import { Cart } from './pages';
 import { Layout } from './layout/Layout';
@@ -6,8 +6,15 @@ import { Routes, Route } from 'react-router-dom';
 import { Whoops404 } from './pages/404/Whoops404';
 import { ProductsDeatails } from './components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch } from 'react-redux';
+import { fetchProducts } from './redux/acshions/acshions';
 
 const App: FC = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchProducts());
+	}, []);
+
 	return (
 		<>
 			<Routes>

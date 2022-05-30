@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Dispatch } from 'redux';
 import { getProducts } from '../../servis';
 import { ProductsAction, ProductsActionTypes } from '../types/products.types';
@@ -25,5 +24,13 @@ export const loadProduct = (id: number) => {
 	return {
 		type: ProductsActionTypes.LOAD_PRODUCT,
 		prodId: id,
+	};
+};
+
+export const changeAttributes = (id: number, user: string) => {
+	return {
+		type: ProductsActionTypes.CHANGE_ATTRIBUTES,
+		Id: id,
+		user,
 	};
 };

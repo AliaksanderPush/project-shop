@@ -4,16 +4,23 @@ import { IProductsSingleProps } from './ProductSingle.props';
 import { CartIcon } from '..';
 import styles from './ProductsSingle.module.css';
 import { Link } from 'react-router-dom';
+import { useTypedSelector } from '../../redux/customHooks/useTypedSelector';
 
 export const ProductSingle = ({ item }: IProductsSingleProps): JSX.Element => {
-	const { title, price, image, id } = item;
+	const { title, price, image, id, isSelected, roles } = item;
+	const { role } = useTypedSelector((state) => state.cart);
+
+	console.log('single>>', role, roles, isSelected);
 
 	return (
 		<Link style={{ textDecoration: 'none', color: 'black' }} to={`/${id}`}>
 			<div className={styles._cards}>
-				<div className={styles._cards_icon}>
-					<CartIcon />
-				</div>
+				{role === roles && isSelected ? (
+					<div className={styles._cards_icon}>
+						<CartIcon />
+					</div>
+				) : null}
+
 				<Card border='black' style={{ width: '18rem' }}>
 					<Card.Img variant='top' src={image} />
 					<Card.Body>

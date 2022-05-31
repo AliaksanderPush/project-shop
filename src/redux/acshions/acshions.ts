@@ -3,7 +3,7 @@ import { getProducts } from '../../servis';
 import { ProductsAction, ProductsActionTypes } from '../types/products.types';
 
 export const fetchProducts = () => {
-	return async (dispatch: Dispatch<ProductsAction>) => {
+	return async (dispatch: Dispatch<ProductsAction>): Promise<void> => {
 		try {
 			dispatch({ type: ProductsActionTypes.LOAD_PRODUCTS });
 			const response = await getProducts();
@@ -32,5 +32,18 @@ export const changeAttributes = (id: number, user: string) => {
 		type: ProductsActionTypes.CHANGE_ATTRIBUTES,
 		Id: id,
 		user,
+	};
+};
+export const removeSelected = (id: number) => {
+	return {
+		type: ProductsActionTypes.REMOVE_SELECTION,
+		remId: id,
+	};
+};
+
+export const sotByRating = (popular: boolean) => {
+	return {
+		type: ProductsActionTypes.SORT_BY_RATING,
+		popular,
 	};
 };

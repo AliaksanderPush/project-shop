@@ -8,11 +8,13 @@ import { ProductsDeatails } from './components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from './redux/acshions/acshions';
+import { useActions } from './redux/customHooks/useAction';
 
 const App: FC = () => {
-	const dispatch = useDispatch();
+	const { fetchProducts } = useActions();
+
 	useEffect(() => {
-		dispatch(fetchProducts());
+		fetchProducts();
 	}, []);
 
 	return (

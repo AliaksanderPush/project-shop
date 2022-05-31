@@ -13,6 +13,8 @@ export enum ProductsActionTypes {
 	LOAD_PRODUCTS_ERROR = 'LOAD_PRODUCTS_ERROR',
 	LOAD_PRODUCT = 'LOAD_PRODUCT',
 	CHANGE_ATTRIBUTES = 'CHANGE_ATTRIBUTES ',
+	REMOVE_SELECTION = 'REMOVE_SELECTION',
+	SORT_BY_RATING = 'SORT_BY_RATING',
 }
 
 interface ILoadProductsAction {
@@ -39,9 +41,21 @@ interface IChangeAttributes {
 	user: string;
 }
 
+interface IRemoveSelection {
+	type: ProductsActionTypes.REMOVE_SELECTION;
+	remId: number;
+}
+
+interface ISortByRating {
+	type: ProductsActionTypes.SORT_BY_RATING;
+	popular: boolean;
+}
+
 export type ProductsAction =
 	| ILoadProductsAction
 	| ILoadSuccessProductsAction
 	| ILoadErrorProductsAction
 	| ILoadErrorProductAction
-	| IChangeAttributes;
+	| IChangeAttributes
+	| IRemoveSelection
+	| ISortByRating;

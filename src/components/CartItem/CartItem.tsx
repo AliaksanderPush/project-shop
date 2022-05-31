@@ -7,13 +7,16 @@ import { useTypedSelector } from '../../redux/customHooks/useTypedSelector';
 export const CartItem = ({ cart }: ICartItem): JSX.Element => {
 	const { id, title, price, image, count, roles } = cart;
 	const { role } = useTypedSelector((state) => state.cart);
-	const { incrementProd, decrementProd } = useActions();
+	const { incrementProd, decrementProd, removeSelected } = useActions();
 
 	const handleIncrementProd = () => {
 		incrementProd(+id);
 	};
 
 	const handleDecrementProd = () => {
+		if (count < 2) {
+			removeSelected(+id);
+		}
 		decrementProd(+id);
 	};
 

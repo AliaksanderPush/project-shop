@@ -1,0 +1,23 @@
+.cart {
+	margin-left: 12px;
+	width: 38px;
+	height: 33px;
+	padding-top: 6px;
+	padding-left: 2px;
+	display: flex;
+	position: relative;
+}
+.product_count {
+	font-size: 14px;
+	font-weight: 700;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: var(--black);
+	color: var(--white);
+	text-align: center;
+	line-height: 17px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}

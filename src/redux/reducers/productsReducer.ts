@@ -33,7 +33,6 @@ export const productsReducer = (state = initialState, action: ProductsAction): I
 			};
 
 		case ProductsActionTypes.CHANGE_ATTRIBUTES: {
-			console.log(state);
 			const { products } = state;
 			const index = products.findIndex((item) => item.id === action.Id);
 			const changeProd = [...products];
@@ -59,6 +58,34 @@ export const productsReducer = (state = initialState, action: ProductsAction): I
 				};
 			}
 		}
+		case ProductsActionTypes.REMOVE_SELECTION: {
+			const { products } = state;
+			const { remId } = action;
+			const ind = products.findIndex((item) => item.id === remId);
+			const newState = [...products];
+			newState[ind].isSelected = false;
+
+			return {
+				...state,
+				products: newState,
+			};
+		}
+		case ProductsActionTypes.SORT_BY_RATING:
+			const { products } = state;
+			const { popular } = action;
+			if (!popular) {
+				const newState = products.sort((a, b) => b.countOrder - a.countOrder);
+				return {
+					...state,
+					products: newState,
+				};
+			} else {
+				const newState = products.sort((a, b) => a.countOrder - b.countOrder);
+				return {
+					...state,
+					products: newState,
+				};
+			}
 
 		default:
 			return state;

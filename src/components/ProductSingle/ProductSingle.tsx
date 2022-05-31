@@ -10,8 +10,6 @@ export const ProductSingle = ({ item }: IProductsSingleProps): JSX.Element => {
 	const { title, price, image, id, isSelected, roles } = item;
 	const { role } = useTypedSelector((state) => state.cart);
 
-	console.log('single>>', role, roles, isSelected);
-
 	return (
 		<Link style={{ textDecoration: 'none', color: 'black' }} to={`/${id}`}>
 			<div className={styles._cards}>

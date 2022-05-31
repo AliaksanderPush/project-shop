@@ -1,9 +1,9 @@
-import { type } from 'os';
 import { CartAction, CartActionTypes, ICartState } from '../types/cart.types';
 
 const initialState: ICartState = {
 	role: 'user',
 	cart: [],
+	prodCount: 0,
 };
 
 export const cartReducer = (state = initialState, action: CartAction): ICartState => {
@@ -38,7 +38,7 @@ export const cartReducer = (state = initialState, action: CartAction): ICartStat
 			const index = cart.findIndex((item) => item.id === id);
 			const newCart = [...cart];
 			newCart[index].count = newCart[index].count + 1;
-			newCart[index].price! += newCart[index].price!;
+			newCart[index].price! += newCart[index].coast!;
 			return {
 				...state,
 				cart: newCart,
@@ -51,7 +51,7 @@ export const cartReducer = (state = initialState, action: CartAction): ICartStat
 			if (cart[index].count > 1) {
 				const newCart = [...cart];
 				newCart[index].count = newCart[index].count - 1;
-				newCart[index].price! -= newCart[index].price!;
+				newCart[index].price! -= newCart[index].coast!;
 				return {
 					...state,
 					cart: newCart,
@@ -74,6 +74,13 @@ export const cartReducer = (state = initialState, action: CartAction): ICartStat
 				cart: newCart,
 			};
 		}
+
+		case CartActionTypes.PRODUCT_COUNT:
+			return {
+				...state,
+				prodCount: action.count,
+			};
+
 		default:
 			return state;
 	}

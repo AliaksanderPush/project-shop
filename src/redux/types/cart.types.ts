@@ -3,7 +3,7 @@ import { ICartProduct } from '../../pages/Cart/Cart.props';
 export interface ICartState {
 	role: string;
 	cart: ICartProduct[];
-	//carAdmin: ICartProduct[];
+	prodCount: number;
 }
 
 export enum CartActionTypes {
@@ -12,6 +12,7 @@ export enum CartActionTypes {
 	INCREMENT_PRODUCT = 'INCREMENT_PRODUCT',
 	DECREMENT_PRODUCT = 'DECREMENT_PRODUCT',
 	SHOW_ROLE_CART = 'SHOW_ROLE_CART',
+	PRODUCT_COUNT = 'PRODUCT_COUNT',
 }
 
 interface ICartAction {
@@ -40,9 +41,15 @@ interface IShowRoleCart {
 	roles: string;
 }
 
+interface IProductCount {
+	type: CartActionTypes.PRODUCT_COUNT;
+	count: number;
+}
+
 export type CartAction =
 	| ICartAction
 	| IAddToCartProduct
 	| IIncrementProduct
 	| IDecrementProduct
-	| IShowRoleCart;
+	| IShowRoleCart
+	| IProductCount;

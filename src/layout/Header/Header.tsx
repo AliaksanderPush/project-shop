@@ -8,18 +8,15 @@ import styles from './Header.module.css';
 
 export const Header = (): JSX.Element => {
 	const [userRole, setUserRole] = useState<boolean>(false);
-	const [countProd, setCountProd] = useState<number>(0);
-	const { cart } = useTypedSelector((state) => state.cart);
+	const { cart, prodCount } = useTypedSelector((state) => state.cart);
 	const { addRole, sotByRating } = useActions();
 
 	const handleRole = () => {
 		setUserRole(!userRole);
 		if (!userRole) {
 			addRole('admin');
-			userProductCounter('admin');
 		} else {
 			addRole('user');
-			userProductCounter('user');
 		}
 	};
 
@@ -29,11 +26,6 @@ export const Header = (): JSX.Element => {
 		} else {
 			sotByRating(true);
 		}
-	};
-
-	const userProductCounter = (rol: string) => {
-		const arr = cart.filter((item) => item.roles === rol);
-		setCountProd(arr.length);
 	};
 
 	return (
@@ -59,7 +51,7 @@ export const Header = (): JSX.Element => {
 									{' '}
 									<CartIconWhite />{' '}
 									{cart.length > 0 ? (
-										<div className={styles.product_count}>{countProd}</div>
+										<div className={styles.product_count}>{prodCount}</div>
 									) : null}
 								</div>
 							</Nav.Link>

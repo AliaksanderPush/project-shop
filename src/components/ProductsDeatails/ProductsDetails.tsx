@@ -4,12 +4,16 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useActions } from '../../redux/customHooks/useAction';
 import { useTypedSelector } from '../../redux/customHooks/useTypedSelector';
+import { loadProduct } from '../../redux/acshions/acshions';
+import { useDispatch } from 'react-redux';
+import { productCount } from '../../redux/acshions/acshions.cart';
 
 export const ProductsDeatails = () => {
 	const { id } = useParams();
 	const { product } = useTypedSelector((state) => state.products);
-	const { role } = useTypedSelector((state) => state.cart);
-	const { loadProduct, addToCart, changeAttributes } = useActions();
+	const { role, cart } = useTypedSelector((state) => state.cart);
+	const { addToCart, changeAttributes } = useActions();
+	const dispatch = useDispatch();
 
 	const addToCartHandler = () => {
 		if (id) {
@@ -29,9 +33,15 @@ export const ProductsDeatails = () => {
 
 	useEffect(() => {
 		if (id) {
-			loadProduct(+id);
+			dispatch(loadProduct(+id));
 		}
-	}, [id]);
+	}, [dispatch, id]);
+
+	useEffect(() => {
+		const arr = cart.filter((item) => item.roles === role);
+		console.log('cart,role>>', role, ':', arr.length);
+		dispatch(productCount(arr.length));
+	}, [cart, role, dispatch]);
 
 	return (
 		<Container>

@@ -5,17 +5,16 @@ import { Layout } from './layout/Layout';
 import { Routes, Route } from 'react-router-dom';
 import { Whoops404 } from './pages/404/Whoops404';
 import { ProductsDeatails } from './components';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from './redux/acshions/acshions';
-import { useActions } from './redux/customHooks/useAction';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App: FC = () => {
-	const { fetchProducts } = useActions();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		fetchProducts();
-	}, []);
+		dispatch(fetchProducts());
+	}, [dispatch]);
 
 	return (
 		<>

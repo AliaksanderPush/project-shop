@@ -35,3 +35,10 @@ export const showRoleCart = (role: string) => {
 		userRole: role,
 	};
 };
+
+export const productCount = (count: number) => {
+	return {
+		type: CartActionTypes.PRODUCT_COUNT,
+		count,
+	};
+};

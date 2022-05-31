@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import { Products } from './pages';
+import { Cart } from './pages';
+import { Layout } from './layout/Layout';
+import { Routes, Route } from 'react-router-dom';
+import { Whoops404 } from './pages/404/Whoops404';
+import { ProductsDeatails } from './components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: FC = () => {
+	return (
+		<>
+			<Routes>
+				<Route path='/' element={<Layout />}>
+					<Route index element={<Products />} />
+					<Route path='cart' element={<Cart />} />
+					<Route path='/:id' element={<ProductsDeatails />} />
+					<Route path='*' element={<Whoops404 />} />
+				</Route>
+			</Routes>
+		</>
+	);
+};
 
 export default App;

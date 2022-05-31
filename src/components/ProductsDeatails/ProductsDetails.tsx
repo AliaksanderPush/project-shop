@@ -7,8 +7,9 @@ import { useTypedSelector } from '../../redux/customHooks/useTypedSelector';
 import { loadProduct } from '../../redux/acshions/acshions';
 import { useDispatch } from 'react-redux';
 import { productCount } from '../../redux/acshions/acshions.cart';
+import { roleFiter } from '../../helpers/helpers';
 
-export const ProductsDeatails = () => {
+export const ProductsDeatails = (): JSX.Element => {
 	const { id } = useParams();
 	const { product } = useTypedSelector((state) => state.products);
 	const { role, cart } = useTypedSelector((state) => state.cart);
@@ -38,8 +39,7 @@ export const ProductsDeatails = () => {
 	}, [dispatch, id]);
 
 	useEffect(() => {
-		const arr = cart.filter((item) => item.roles === role);
-		console.log('cart,role>>', role, ':', arr.length);
+		const arr = roleFiter(cart, role);
 		dispatch(productCount(arr.length));
 	}, [cart, role, dispatch]);
 

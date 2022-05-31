@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row, Col, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import { ICartItem } from './CartItem.props';
 import { useActions } from '../../redux/customHooks/useAction';

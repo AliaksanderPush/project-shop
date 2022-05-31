@@ -19,7 +19,7 @@ const App: FC = () => {
 	return (
 		<>
 			<Routes>
-				<Route path='/' element={<Layout />}>
+				<Route path='/' element={<Layout children />}>
 					<Route index element={<Products />} />
 					<Route path='cart' element={<Cart />} />
 					<Route path='/:id' element={<ProductsDeatails />} />

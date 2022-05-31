@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
-export interface LayoutProps {
-	children: ReactNode;
+export interface ILoyoutProps {
+	children: JSX.Element[] | JSX.Element | React.ReactNode;
 }

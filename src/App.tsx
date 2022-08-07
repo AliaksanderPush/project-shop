@@ -1,6 +1,6 @@
 import { FC, useEffect, lazy } from 'react';
 import { Layout } from './layout/Layout';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from './redux/acshions/acshions';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,16 +20,16 @@ const App: FC = () => {
 	}, [dispatch]);
 
 	return (
-		<>
+		<BrowserRouter basename='/project-shop'>
 			<Routes>
-				<Route path='/' element={<Layout children />}>
+				<Route exact path='/project-shop' element={<Layout children />}>
 					<Route index element={<Products />} />
 					<Route path='cart' element={<Cart />} />
 					<Route path='/:id' element={<ProductsDeatails />} />
 					<Route path='*' element={<Whoops404 />} />
 				</Route>
 			</Routes>
-		</>
+		</BrowserRouter>
 	);
 };
 

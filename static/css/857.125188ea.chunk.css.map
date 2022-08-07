@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/857.125188ea.chunk.css","mappings":"AAAA,wBAGC,qBAAsB,CAFtB,iBAAkB,CAClB,qBAAsB,CAEtB,WACD","sources":["pages/Products/Product.module.css"],"sourcesContent":[".spinner {\r\n\tposition: absolute;\r\n\ttop: calc(50vh - 20px);\r\n\tleft: calc(50% - 20px);\r\n\tz-index: 100;\r\n}\r\n"],"names":[],"sourceRoot":""}

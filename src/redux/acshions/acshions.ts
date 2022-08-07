@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { getProducts } from '../../servis';
 import { ProductsAction, ProductsActionTypes } from '../types/products.types';
 
-export const fetchProducts = () => {
+export const fetchProducts = (): any => {
 	return async (dispatch: Dispatch<ProductsAction>): Promise<void> => {
 		try {
 			dispatch({ type: ProductsActionTypes.LOAD_PRODUCTS });
